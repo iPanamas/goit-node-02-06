@@ -3,6 +3,7 @@ const { NotFound } = require("http-errors");
 
 const putById = async (req, res, next) => {
   const { contactId } = req.params;
+
   const contact = await updateContact(contactId, req.body);
 
   if (!contact) {
