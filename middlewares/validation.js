@@ -4,13 +4,13 @@ const validationPost = (schema) => {
   return (req, _, next) => {
     const { error } = schema.validate(req.body);
     if (error) {
-      throw new BadRequest("missing required name field");
+      throw new BadRequest("missing required fields");
     }
     next();
   };
 };
 
-const validationPut = (schema) => {
+const validationUpdate = (schema) => {
   return (req, _, next) => {
     const { error } = schema.validate(req.body);
     if (error) {
@@ -22,5 +22,5 @@ const validationPut = (schema) => {
 
 module.exports = {
   validationPost,
-  validationPut,
+  validationUpdate,
 };
