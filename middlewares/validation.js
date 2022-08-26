@@ -14,7 +14,7 @@ const validationUpdate = (schema) => {
   return (req, _, next) => {
     const { error } = schema.validate(req.body);
     if (error) {
-      throw new BadRequest("missing fields");
+      throw new BadRequest("Invalid value");
     }
     next();
   };

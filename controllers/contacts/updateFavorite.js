@@ -1,4 +1,6 @@
 const { Contact } = require("../../models");
+const { STATUS_CODES } = require("../../helpers");
+const { OK } = STATUS_CODES;
 
 const updateFavorite = async (req, res, next) => {
   const { contactId } = req.params;
@@ -14,7 +16,7 @@ const updateFavorite = async (req, res, next) => {
 
   res.json({
     status: "success",
-    code: 200,
+    code: OK,
     data: {
       result,
     },

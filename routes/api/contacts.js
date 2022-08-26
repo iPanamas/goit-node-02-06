@@ -7,13 +7,14 @@ const {
   validationPost,
   validationUpdate,
   validateId,
+  auth,
 } = require("../../middlewares");
 
-router.get("/", ctrlWrapper(ctrl.getAll));
+router.get("/", auth, ctrlWrapper(ctrl.getAll));
 
 router.get("/:contactId", validateId, ctrlWrapper(ctrl.getById));
 
-router.post("/", validationPost(joiSchema), ctrlWrapper(ctrl.addNew));
+router.post("/", auth, validationPost(joiSchema), ctrlWrapper(ctrl.addNew));
 
 router.delete("/:contactId", validateId, ctrlWrapper(ctrl.removeById));
 
