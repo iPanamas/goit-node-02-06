@@ -7,7 +7,6 @@ const { subscriptionJoiSchema } = require("../../models");
 const router = express.Router();
 
 router.get("/current", auth, ctrlWrapper(ctrl.getCurrent));
-
 router.patch(
   "/subscription",
   auth,

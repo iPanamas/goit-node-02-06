@@ -1,5 +1,6 @@
 const { Contact } = require("../../models");
 const { STATUS_CODES } = require("../../middlewares");
+
 const { OK } = STATUS_CODES;
 
 const getAll = async (req, res, next) => {
@@ -13,10 +14,10 @@ const getAll = async (req, res, next) => {
   let result;
 
   if (favorite) {
-    filteredResult = await Contact.find({ owner: _id, favorite }).populate(
-      "owner",
-      "_id email"
-    );
+    filteredResult = await Contact.find({ owner: _id, favorite }, "", {
+      skip,
+      limit: Number(limit),
+    }).populate("owner", "_id email");
   } else {
     result = await Contact.find({ owner: _id }, "", {
       skip,

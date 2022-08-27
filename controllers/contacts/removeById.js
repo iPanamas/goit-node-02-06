@@ -1,5 +1,6 @@
 const { Contact } = require("../../models");
 const { STATUS_CODES } = require("../../middlewares");
+
 const { OK } = STATUS_CODES;
 
 const removeById = async (req, res, next) => {

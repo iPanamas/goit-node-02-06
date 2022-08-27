@@ -1,7 +1,7 @@
+const jwt = require("jsonwebtoken");
 const { User } = require("../../models");
 const { Unauthorized } = require("http-errors");
 const { STATUS_CODES } = require("../../middlewares");
-const jwt = require("jsonwebtoken");
 
 const { OK } = STATUS_CODES;
 const { SECRET_KEY } = process.env;

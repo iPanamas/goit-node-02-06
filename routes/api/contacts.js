@@ -11,20 +11,15 @@ const {
 } = require("../../middlewares");
 
 router.get("/", auth, ctrlWrapper(ctrl.getAll));
-
 router.get("/:contactId", validateId, ctrlWrapper(ctrl.getById));
-
 router.post("/", auth, validationPost(joiSchema), ctrlWrapper(ctrl.addNew));
-
 router.delete("/:contactId", validateId, ctrlWrapper(ctrl.removeById));
-
 router.put(
   "/:contactId",
   validateId,
   validationUpdate(joiSchema),
   ctrlWrapper(ctrl.putById)
 );
-
 router.patch(
   "/:contactId/favorite",
   validateId,

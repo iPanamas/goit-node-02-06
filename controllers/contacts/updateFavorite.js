@@ -1,5 +1,6 @@
 const { Contact } = require("../../models");
 const { STATUS_CODES } = require("../../middlewares");
+
 const { OK } = STATUS_CODES;
 
 const updateFavorite = async (req, res, next) => {
