@@ -1,6 +1,6 @@
 const { User } = require("../../models");
 const { Unauthorized } = require("http-errors");
-const { STATUS_CODES } = require("../../helpers");
+const { STATUS_CODES } = require("../../middlewares");
 const jwt = require("jsonwebtoken");
 
 const { OK } = STATUS_CODES;

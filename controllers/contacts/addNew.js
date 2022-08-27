@@ -1,5 +1,5 @@
 const { Contact } = require("../../models");
-const { STATUS_CODES } = require("../../helpers");
+const { STATUS_CODES } = require("../../middlewares");
 const { CREATED } = STATUS_CODES;
 
 const addNew = async (req, res, next) => {

@@ -1,6 +1,6 @@
 const { User } = require("../../models");
 const { Conflict } = require("http-errors");
-const { STATUS_CODES } = require("../../helpers");
+const { STATUS_CODES } = require("../../middlewares");
 const { CREATED } = STATUS_CODES;
 
 const signup = async (req, res) => {

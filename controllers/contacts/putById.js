@@ -1,5 +1,5 @@
 const { Contact } = require("../../models");
-const { STATUS_CODES } = require("../../helpers");
+const { STATUS_CODES } = require("../../middlewares");
 const { OK } = STATUS_CODES;
 
 const putById = async (req, res, next) => {

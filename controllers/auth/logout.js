@@ -1,5 +1,5 @@
 const { User } = require("../../models");
-const { STATUS_CODES } = require("../../helpers");
+const { STATUS_CODES } = require("../../middlewares");
 const { NO_CONTENT } = STATUS_CODES;
 
 const logout = async (req, res) => {
