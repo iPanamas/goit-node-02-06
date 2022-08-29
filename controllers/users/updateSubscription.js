@@ -4,10 +4,10 @@ const { STATUS_CODES } = require("../../middlewares");
 const { OK } = STATUS_CODES;
 
 const updateSubscription = async (req, res) => {
-  const { email } = req.user;
+  const { _id: id } = req.user;
   const { subscription } = req.body;
 
-  await User.findOneAndUpdate(email, { subscription }, { new: true });
+  await User.findById(id, { subscription }, { new: true });
 
   res.json({
     status: "success",
