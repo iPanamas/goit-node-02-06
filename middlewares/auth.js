@@ -1,9 +1,7 @@
-require("dotenv").config();
 const { User } = require("../models");
 const { Unauthorized } = require("http-errors");
 const jwt = require("jsonwebtoken");
 const STATUS_CODES = require("./codeStatus");
-
 const { UNAUTHORIZED } = STATUS_CODES;
 const { SECRET_KEY } = process.env;
 
