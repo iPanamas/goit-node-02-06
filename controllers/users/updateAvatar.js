@@ -1,21 +1,30 @@
 const { User } = require("../../models");
 const path = require("path");
 const fs = require("fs").promises;
+const Jimp = require("jimp");
 const { STATUS_CODES } = require("../../middlewares");
-const { OK } = STATUS_CODES;
 
-const avatarsDir = path.join(__dirname, "../../", "public", "avatars");
+const { OK } = STATUS_CODES;
+const avatarsDir = path.resolve("public/avatars");
 
 const updateAvatar = async (req, res, next) => {
   const { path: tempUpload, originalname } = req.file;
   const { _id: id } = req.user;
-  const imageName = `${id}_${originalname}`;
+  const imageName = `${id}-${originalname}`;
+  const resultUpload = path.join(avatarsDir, imageName);
+  const avatarURL = path.join("public", "avatars", imageName);
 
   try {
-    const resultUpload = path.join(avatarsDir, imageName);
     await fs.rename(tempUpload, resultUpload);
-    const avatarURL = path.join("public", "avatars", imageName);
+    await Jimp.read(resultUpload)
+      .then((image) => {
+        return image.resize(250, 250).write(resultUpload);
+      })
+      .catch((error) => {
+        next(error);
+      });
     await User.findByIdAndUpdate(id, { avatarURL });
+
     res.json({
       status: "success",
       code: OK,

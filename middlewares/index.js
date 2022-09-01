@@ -4,6 +4,7 @@ const ctrlWrapper = require("./ctrlWrapper");
 const auth = require("./auth");
 const upload = require("./upload");
 const STATUS_CODES = require("./codeStatus");
+const createFolderIsNotExist = require("./createFolder");
 
 module.exports = {
   validateId,
@@ -13,4 +14,5 @@ module.exports = {
   auth,
   upload,
   STATUS_CODES,
+  createFolderIsNotExist,
 };
