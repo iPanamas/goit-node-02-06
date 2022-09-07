@@ -3,6 +3,8 @@ const path = require("path");
 
 const tmpDir = path.resolve("/tmp");
 
+const fileSize = 2097152; // Size uploading file on bytes
+
 const multerConfig = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, tmpDir);
@@ -20,7 +22,7 @@ const multerConfig = multer.diskStorage({
     cb(null, false);
   },
   limits: {
-    fileSize: 2097152,
+    fileSize,
   },
 });
 
