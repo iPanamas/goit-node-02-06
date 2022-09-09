@@ -49,6 +49,10 @@ const joiLoginSchema = Joi.object({
   password: Joi.string().required(),
 });
 
+const joiVerifyEmailSchema = Joi.object({
+  email: Joi.string().required(),
+});
+
 const subscriptionJoiSchema = Joi.object({
   subscription: Joi.string().valid("starter", "pro", "business").required(),
 });
@@ -68,4 +72,5 @@ module.exports = {
   joiSignupSchema,
   joiLoginSchema,
   subscriptionJoiSchema,
+  joiVerifyEmailSchema,
 };

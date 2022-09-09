@@ -7,8 +7,9 @@ const {
   upload,
   ctrlWrapper,
   validationUpdate,
+  validationVerify,
 } = require("../../middlewares");
-const { subscriptionJoiSchema } = require("../../models");
+const { subscriptionJoiSchema, joiVerifyEmailSchema } = require("../../models");
 const router = express.Router();
 
 router.get("/current", auth, ctrlWrapper(ctrl.getCurrent));
@@ -25,5 +26,10 @@ router.patch(
   ctrlWrapper(ctrl.updateAvatar)
 );
 
-router.get("/verify/:verificationToken", ctrlWrapper(ctrl.verifyEmail));
+router.post(
+  "/verify",
+  validationVerify(joiVerifyEmailSchema),
+  ctrlWrapper(ctrl.resendVerifyEmail)
+);
+
 module.exports = router;

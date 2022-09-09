@@ -1,11 +1,19 @@
 const { User } = require("../../models");
-const { NotFount } = require("http-errors");
+const { STATUS_CODES } = require("../../middlewares");
+const { NotFound, BadRequest } = require("http-errors");
+
+const { OK } = STATUS_CODES;
+
 const verifyEmail = async (req, res) => {
   const { verificationToken } = req.params;
   const user = await User.findOne({ verificationToken });
 
   if (!user) {
-    throw NotFount();
+    throw new NotFound("User not found");
+  }
+
+  if (user.verify) {
+    throw new BadRequest("User already verify");
   }
 
   await User.findByIdAndUpdate(user._id, {
@@ -13,7 +21,7 @@ const verifyEmail = async (req, res) => {
     verificationToken: null,
   });
 
-  res.json({ message: "Verification success" });
+  res.json({ status: OK, message: "Verification successful" });
 };
 
 module.exports = verifyEmail;

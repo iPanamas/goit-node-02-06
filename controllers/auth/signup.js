@@ -2,9 +2,8 @@ const { User } = require("../../models");
 const { Conflict } = require("http-errors");
 const gravatar = require("gravatar");
 const { v4: uuidv4 } = require("uuid");
-
 const { STATUS_CODES } = require("../../middlewares");
-const { sendEmail } = require("../../helpers");
+const { sendEmail, emailParams } = require("../../helpers");
 
 const { CREATED } = STATUS_CODES;
 
@@ -25,9 +24,12 @@ const signup = async (req, res) => {
     avatarURL,
     verificationToken,
   });
+
   newUser.setPassword(password);
   await newUser.save();
-  await sendEmail(email, verificationToken);
+
+  const mailInfo = emailParams(email, verificationToken);
+  await sendEmail(mailInfo);
 
   res.status(CREATED).json({
     status: "success",

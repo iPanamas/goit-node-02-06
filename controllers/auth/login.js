@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { BadRequest } = require("http-errors");
 const { User } = require("../../models");
 const { Unauthorized } = require("http-errors");
 const { STATUS_CODES } = require("../../middlewares");
@@ -17,6 +18,10 @@ const login = async (req, res) => {
   }
 
   const { subscription } = user;
+
+  if (!user.verify) {
+    throw BadRequest("Email not verify");
+  }
 
   const payload = {
     id: user._id,
