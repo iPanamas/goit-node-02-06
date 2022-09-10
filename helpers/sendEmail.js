@@ -3,8 +3,6 @@ require("dotenv").config();
 
 const { META_EMAIL, META_PASSWORD } = process.env;
 
-console.log(META_EMAIL);
-
 const nodemailerConfig = {
   host: "smtp.meta.ua",
   port: 465,
