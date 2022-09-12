@@ -1,4 +1,5 @@
-const { BadRequest } = require("http-errors");
+const { BadRequest, NotFound } = require("http-errors");
+const { isValidObjectId } = require("mongoose");
 
 const validationPost = (schema) => {
   return (req, _, next) => {
@@ -30,8 +31,20 @@ const validationVerify = (schema) => {
   };
 };
 
+const validateId = (req, res, next) => {
+  const { contactId } = req.params;
+  const isValid = isValidObjectId(contactId);
+
+  if (!isValid) {
+    next(NotFound(`Contact with id(${contactId}) not found`));
+    return;
+  }
+  next();
+};
+
 module.exports = {
   validationPost,
   validationUpdate,
   validationVerify,
+  validateId,
 };
